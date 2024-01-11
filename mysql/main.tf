@@ -25,10 +25,11 @@ terraform {
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "aws_db_instance" "mysql" {
-  engine         = "mysql"
-  engine_version = "5.6.41"
+  engine               = "mysql"
+  engine_version       = "5.7"
+  parameter_group_name = "default.mysql5.7"
 
-  name     = var.name
+  db_name  = var.name
   username = var.master_username
   password = var.master_password
 
@@ -36,6 +37,5 @@ resource "aws_db_instance" "mysql" {
   allocated_storage = var.allocated_storage
   storage_type      = var.storage_type
 
-  # TODO: DO NOT COPY THIS SETTING INTO YOUR PRODUCTION DBS. It's only here to make testing this code easier!
   skip_final_snapshot = true
 }
